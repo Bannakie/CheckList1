@@ -26,13 +26,13 @@
         <div class="row">
             <div class="col-sm-12">
                 <ul class="list-group" id="uList">
-                    <li class="list-group-item">
+                    <li class="list-group-item animate__animated animate__fadeInBottomRight">
                         Wash Car <button onclick="removeLi(this.parentNode)" class="button">Remove</button>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item animate__animated animate__fadeInBottomRight">
                         Clean Garage <button onclick="removeLi(this.parentNode)" class="button">Remove</button>
                     </li>
-                    <li class="list-group-item checked">
+                    <li class="list-group-item checked animate__animated animate__fadeInBottomRight">
                         Mow Lawn<button onclick="removeLi(this.parentNode)" class="button">Remove</button>
                     </li>
                 </ul>
@@ -68,7 +68,7 @@
             let tNode = document.createTextNode(inputValue);
 
             li.appendChild(tNode);
-            li.className = "list-group-item";
+            li.className = "list-group-item card animate__animated animate__fadeInBottomRight";
             if (inputValue === '') {
                 alert("Must enter task!");
             } else {
