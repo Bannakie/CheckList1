@@ -18,7 +18,7 @@
         <h1 class="center">To Do List</h1>
         <input type="text" id="newTask" placeholder="New Task...">
         <button>
-            <span onclick="addTask()" class="addBtn">Add Task</span>
+            <span onclick="functions.addTask()" class="addBtn">Add Task</span>
         </button>
     </header>
 
@@ -27,13 +27,14 @@
             <div class="col-sm-12">
                 <ul class="list-group" id="uList">
                     <li class="list-group-item animate__animated animate__fadeInBottomRight">
-                        Wash Car <button onclick="removeLi(this.parentNode)" class="button">Remove</button>
+                        Wash Car <button onclick="functions.removeLi(this.parentNode)" class="button">Remove</button>
                     </li>
                     <li class="list-group-item animate__animated animate__fadeInBottomRight">
-                        Clean Garage <button onclick="removeLi(this.parentNode)" class="button">Remove</button>
+                        Clean Garage <button onclick="functions.removeLi(this.parentNode)"
+                            class="button">Remove</button>
                     </li>
                     <li class="list-group-item checked animate__animated animate__fadeInBottomRight">
-                        Mow Lawn<button onclick="removeLi(this.parentNode)" class="button">Remove</button>
+                        Mow Lawn<button onclick="functions.removeLi(this.parentNode)" class="button">Remove</button>
                     </li>
                 </ul>
             </div>
@@ -61,39 +62,42 @@
     </script>
 
     <script>
-        function addTask() {
-            let li = document.createElement("li");
-            let list = document.getElementById("uList");
-            let inputValue = document.getElementById("newTask").value;
-            let tNode = document.createTextNode(inputValue);
+        const functions = {
+            addedTodos : [],
+            addTask: function () {
+                let upOne = this;
+                let li = document.createElement("li");
+                let list = document.getElementById("uList");
+                let inputValue = document.getElementById("newTask").value;
+                let tNode = document.createTextNode(inputValue);
 
-            li.appendChild(tNode);
-            li.className = "list-group-item card animate__animated animate__fadeInBottomRight";
-            if (inputValue === '') {
-                alert("Must enter task!");
-            } else {
-                list.appendChild(li);
+                li.appendChild(tNode);
+                li.className = "list-group-item card animate__animated animate__fadeInBottomRight";
+                if (inputValue === '') {
+                    alert("Must enter task!");
+                } else {
+                    list.appendChild(li);
+                }
+                document.getElementById("newTask").value = "";
+
+                let deleteButton = document.createElement("button");
+                let txt = document.createTextNode("Remove");
+                deleteButton.setAttribute("onclick", "functions.removeLi(this.parentNode)");
+                deleteButton.className = "button";
+                deleteButton.appendChild(txt);
+                li.appendChild(deleteButton);
+                upOne.addedTodos.push(inputValue);
+                console.log(upOne.addedTodos);
+            },
+
+            toggleChecked: function (element) {
+                element.classList.toggle("checked");
+            },
+
+            removeLi: function (element) {
+                element.remove();
             }
-            document.getElementById("newTask").value = "";
 
-            let deleteButton = document.createElement("button");
-            let txt = document.createTextNode("Remove");
-            deleteButton.setAttribute("onclick", "removeLi(this.parentNode)");
-            deleteButton.className = "button";
-            deleteButton.appendChild(txt);
-            li.appendChild(deleteButton);
-        }
-    </script>
-
-    <script>
-        function toggleChecked(element) {
-            element.classList.toggle("checked");
-        }
-    </script>
-
-    <script>
-        function removeLi(element) {
-            element.remove();
         }
     </script>
 
